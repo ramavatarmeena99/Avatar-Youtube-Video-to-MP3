@@ -6,12 +6,11 @@ import { BiSearch } from "react-icons/bi";
 
 export default function Center() {
   const [videoUrl, setVideoUrl] = useState("");
-  const [yourVideoUrl, setYourVideoUrl] = useState("");
   const [downloadLink, setDownloadLink] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  var youtubeURL = videoUrl;
-  var videoKey = youtubeURL.substr(youtubeURL.lastIndexOf("v=") + 2, 11);
+  // var youtubeURL = videoUrl;
+  // var videoKey = youtubeURL.substr(youtubeURL.lastIndexOf("v=") + 2, 11);
   const url = (e) => {
     setVideoUrl(e.target.value);
   };
@@ -21,6 +20,11 @@ export default function Center() {
       alert("none");
       return;
     }
+    if (!videoUrl.startsWith("http")) {
+      alert("your url wrong");
+      return;
+    }
+
     setIsLoading(true);
 
     await axios({
@@ -55,15 +59,10 @@ export default function Center() {
       });
   };
 
-  const getUrl = () => {
-    if (!videoUrl.startsWith("http")) {
-      alert("your url wrong");
-      return;
-    } else {
-      setYourVideoUrl(videoKey);
-    }
-    // console.log(videoKey)
-  };
+  // const getUrl = () => {
+
+  //   // console.log(videoKey)
+  // };
 
   //   useEffect(() => {
   // // getApi()
