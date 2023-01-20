@@ -8,6 +8,7 @@ export default function Center() {
   const [videoUrl, setVideoUrl] = useState("");
   const [downloadLink, setDownloadLink] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [disable, setDisable] = useState(false);
 
   // var youtubeURL = videoUrl;
   // var videoKey = youtubeURL.substr(youtubeURL.lastIndexOf("v=") + 2, 11);
@@ -16,6 +17,8 @@ export default function Center() {
   };
 
   const searchVideos = async () => {
+
+
     if (videoUrl === "") {
       alert("none");
       return;
@@ -24,6 +27,7 @@ export default function Center() {
       alert("your url wrong");
       return;
     }
+    setDisable(true);
 
     setIsLoading(true);
 
@@ -46,6 +50,8 @@ export default function Center() {
       },
     })
       .then((res) => {
+        setDisable(false);
+
         setIsLoading(false);
 
         console.log(res.data?.YoutubeAPI?.urlMp3); // for array found //
@@ -85,7 +91,7 @@ export default function Center() {
           <ForDots />
         </Top>
         <Bottom>
-          <H1>Convert2MP3 Online Video Downloader</H1>
+          <H1>Youtube2MP3 Online Video Downloader</H1>
           <div
             style={{
               width: "80%",
@@ -107,10 +113,13 @@ export default function Center() {
               type="text"
               placeholder="Enter valid youtube Video url"
             />
-            <SearchButton onClick={searchVideos}>
+            <SearchButton disabled={disable} onClick={searchVideos}>
+            {disable ? "Wait  " : 
+
               <BiSearch
                 style={{ fontSize: "22px", fontWeight: "900", color: "white" }}
               />
+          }
             </SearchButton>
           </div>
           {isLoading && (
