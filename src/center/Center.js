@@ -1,19 +1,27 @@
 import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
+import loading from "../assests/loading.gif";
+import { BiSearch } from "react-icons/bi";
 
 export default function Center() {
   const [videoUrl, setVideoUrl] = useState("");
-  // const [yourVideoUrl, setYourVideoUrl] = useState("");
+  const [yourVideoUrl, setYourVideoUrl] = useState("");
   const [downloadLink, setDownloadLink] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  // var youtubeURL = videoUrl;
-  // var videoKey = youtubeURL.substr(youtubeURL.lastIndexOf("v=") + 2, 11);
+  var youtubeURL = videoUrl;
+  var videoKey = youtubeURL.substr(youtubeURL.lastIndexOf("v=") + 2, 11);
   const url = (e) => {
     setVideoUrl(e.target.value);
   };
 
   const searchVideos = async () => {
+    if (videoUrl === "") {
+      setIsLoading(true);
+      alert("none");
+      return;
+    }
     await axios({
       method: "GET",
 
@@ -42,15 +50,15 @@ export default function Center() {
       });
   };
 
-  // const getUrl = () => {
-  //   if (!videoUrl.startsWith("http")) {
-  //     alert("your url wrong");
-  //     return;
-  //   } else {
-  //     setYourVideoUrl(videoKey);
-  //   }
-  //   // console.log(videoKey)
-  // };
+  const getUrl = () => {
+    if (!videoUrl.startsWith("http")) {
+      alert("your url wrong");
+      return;
+    } else {
+      setYourVideoUrl(videoKey);
+    }
+    // console.log(videoKey)
+  };
 
   //   useEffect(() => {
   // // getApi()
@@ -73,20 +81,45 @@ export default function Center() {
           <ForDots />
         </Top>
         <Bottom>
-          <H1>
-        
-            Convert2MP3 Online Video Downloader
-          </H1>
-          <Input
-            onChange={url}
-            value={videoUrl}
-            type="text"
-            placeholder="Enter valid youtube Video url"
-          />
-          <Button onClick={searchVideos}>Search</Button>
-          <Button onClick={() => window.open(downloadLink)}>
-            Download to mp3
-          </Button>
+          <H1>Convert2MP3 Online Video Downloader</H1>
+          <div
+            style={{
+              width: "80%",
+              height: "55px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: "9px",
+              border: "1px solid black",
+              backgroundColor: "white",
+              paddingLeft: "10px",
+              outline: "none",
+              fontSize: "16px",
+            }}
+          >
+            <Input
+              onChange={url}
+              value={videoUrl}
+              type="text"
+              placeholder="Enter valid youtube Video url"
+            />
+            <SearchButton onClick={searchVideos}>
+              <BiSearch
+                style={{ fontSize: "22px", fontWeight: "900", color: "white" }}
+              />
+            </SearchButton>
+          </div>
+          {isLoading ? (
+            <img
+              style={{ width: "100px", height: "100px" }}
+              src={loading}
+              alt="loading"
+            />
+          ) : (
+            <Button onClick={() => window.open(downloadLink)}>
+              Download to mp3
+            </Button>
+          )}
         </Bottom>
       </div>
 
@@ -105,24 +138,58 @@ const CenterContainer = styled.div`
   /* background-color: red; */
 `;
 const Input = styled.input`
-  width: 70%;
+  width: 90%;
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 9px;
-  border: 1px solid black;
-  padding-left: 10px;
+  border: none;
+
   outline: none;
-  font-size:16px ;
+  font-size: 16px;
+  background-color: transparent;
+`;
+const SearchButton = styled.button`
+  width: 8%;
+  height: 35px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  background-color: green;
+  border: none;
+  border-radius: 5px;
+  background-image: linear-gradient(
+    to left top,
+    #327ff2,
+    #4a8cf3,
+    #5f98f3,
+    #72a5f2,
+    #86b1f1
+  );
+  /* margin-bottom: 50px; */
 `;
 const Button = styled.button`
   width: 10%;
-  height: 50px;
+  height: 35px;
   display: flex;
+  cursor: pointer;
   align-items: center;
   justify-content: center;
-  margin-bottom: 50px;
+  background-color: green;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  background-image: linear-gradient(
+    to left top,
+    #327ff2,
+    #4a8cf3,
+    #5f98f3,
+    #72a5f2,
+    #86b1f1
+  );
+  /* margin-bottom: 50px; */
 `;
 const Top = styled.div`
   width: 100%;
@@ -150,9 +217,9 @@ const ForDots = styled.div`
 `;
 
 const H1 = styled.h1`
- font-size: 36px;
- text-align:center ;
- font-weight:700;
- padding:10px 110px ;
- color:white ;
+  font-size: 36px;
+  text-align: center;
+  font-weight: 700;
+  padding: 10px 110px;
+  color: white;
 `;
