@@ -72,21 +72,22 @@ export default function Center() {
           <ForDots />
           <ForDots />
         </Top>
-        <Input
-          onChange={url}
-          value={videoUrl}
-          type="text"
-          placeholder="past your url"
-        />
-        <Button
-         
-          onClick={searchVideos}
-        >
-          Search
-        </Button>
-        <Button onClick={() => window.open(downloadLink)}>
-          Download to mp3
-        </Button>
+        <Bottom>
+          <H1>
+        
+            Convert2MP3 Online Video Downloader
+          </H1>
+          <Input
+            onChange={url}
+            value={videoUrl}
+            type="text"
+            placeholder="Enter valid youtube Video url"
+          />
+          <Button onClick={searchVideos}>Search</Button>
+          <Button onClick={() => window.open(downloadLink)}>
+            Download to mp3
+          </Button>
+        </Bottom>
       </div>
 
       {/* <h1>{yourVideoUrl}</h1> */}
@@ -109,6 +110,11 @@ const Input = styled.input`
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 9px;
+  border: 1px solid black;
+  padding-left: 10px;
+  outline: none;
+  font-size:16px ;
 `;
 const Button = styled.button`
   width: 10%;
@@ -117,7 +123,6 @@ const Button = styled.button`
   align-items: center;
   justify-content: center;
   margin-bottom: 50px;
-  
 `;
 const Top = styled.div`
   width: 100%;
@@ -127,6 +132,14 @@ const Top = styled.div`
   align-items: center;
   flex-direction: row;
 `;
+const Bottom = styled.div`
+  width: 100%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
 
 const ForDots = styled.div`
   width: 12px;
@@ -134,4 +147,12 @@ const ForDots = styled.div`
   border-radius: 50%;
   background-color: #69a0eb;
   margin-left: 12px;
+`;
+
+const H1 = styled.h1`
+ font-size: 36px;
+ text-align:center ;
+ font-weight:700;
+ padding:10px 110px ;
+ color:white ;
 `;
