@@ -17,8 +17,6 @@ export default function Center() {
   };
 
   const searchVideos = async () => {
-
-
     if (videoUrl === "") {
       alert("none");
       return;
@@ -77,14 +75,7 @@ export default function Center() {
 
   return (
     <CenterContainer>
-      <div
-        style={{
-          width: "70vw",
-          height: "80%",
-          border: "1px solid white",
-          borderRadius: "15px",
-        }}
-      >
+      <Box>
         <Top>
           <ForDots />
           <ForDots />
@@ -92,21 +83,7 @@ export default function Center() {
         </Top>
         <Bottom>
           <H1>Youtube2MP3 Online Video Downloader</H1>
-          <div
-            style={{
-              width: "80%",
-              height: "55px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: "9px",
-              border: "none",
-              backgroundColor: "white",
-              paddingLeft: "10px",
-              outline: "none",
-              fontSize: "16px",
-            }}
-          >
+          <ForSearchBox>
             <Input
               onChange={url}
               value={videoUrl}
@@ -114,14 +91,19 @@ export default function Center() {
               placeholder="Enter valid youtube Video url"
             />
             <SearchButton disabled={disable} onClick={searchVideos}>
-            {disable ? "Wait  " : 
-
-              <BiSearch
-                style={{ fontSize: "22px", fontWeight: "900", color: "white" }}
-              />
-          }
+              {disable ? (
+                "Wait"
+              ) : (
+                <BiSearch
+                  style={{
+                    fontSize: "22px",
+                    fontWeight: "900",
+                    color: "white",
+                  }}
+                />
+              )}
             </SearchButton>
-          </div>
+          </ForSearchBox>
           {isLoading && (
             <img
               style={{ width: "100px", height: "100px" }}
@@ -135,7 +117,7 @@ export default function Center() {
             </Button>
           )}
         </Bottom>
-      </div>
+      </Box>
 
       {/* <h1>{yourVideoUrl}</h1> */}
     </CenterContainer>
@@ -150,6 +132,25 @@ const CenterContainer = styled.div`
   align-items: center;
   justify-content: center;
   /* background-color: red; */
+`;
+const Box = styled.div`
+  width: 70vw;
+  height: 80%;
+  border: 1px solid white;
+  border-radius: 15px;
+`;
+const ForSearchBox = styled.div`
+  width: 80%;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  border: none;
+  background-color: white;
+  padding-left: 10px;
+  outline: none;
+  font-size: 16px;
 `;
 const Input = styled.input`
   width: 90%;
@@ -185,7 +186,7 @@ const SearchButton = styled.button`
   /* margin-bottom: 50px; */
 `;
 const Button = styled.button`
-  width: 10%;
+  width: 20%;
   height: 35px;
   display: flex;
   cursor: pointer;
