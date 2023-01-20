@@ -18,10 +18,11 @@ export default function Center() {
 
   const searchVideos = async () => {
     if (videoUrl === "") {
-      setIsLoading(true);
       alert("none");
       return;
     }
+    setIsLoading(true);
+
     await axios({
       method: "GET",
 
@@ -41,11 +42,15 @@ export default function Center() {
       },
     })
       .then((res) => {
+        setIsLoading(false);
+
         console.log(res.data?.YoutubeAPI?.urlMp3); // for array found //
 
         setDownloadLink(res.data?.YoutubeAPI?.urlMp3);
       })
       .catch((err) => {
+        setIsLoading(false);
+
         console.log("err: ", err);
       });
   };
@@ -71,7 +76,7 @@ export default function Center() {
         style={{
           width: "70vw",
           height: "80%",
-          border: "1px solid black",
+          border: "1px solid white",
           borderRadius: "15px",
         }}
       >
@@ -90,7 +95,7 @@ export default function Center() {
               alignItems: "center",
               justifyContent: "center",
               borderRadius: "9px",
-              border: "1px solid black",
+              border: "none",
               backgroundColor: "white",
               paddingLeft: "10px",
               outline: "none",
@@ -109,13 +114,14 @@ export default function Center() {
               />
             </SearchButton>
           </div>
-          {isLoading ? (
+          {isLoading && (
             <img
               style={{ width: "100px", height: "100px" }}
               src={loading}
               alt="loading"
             />
-          ) : (
+          )}
+          {downloadLink && (
             <Button onClick={() => window.open(downloadLink)}>
               Download to mp3
             </Button>
@@ -194,7 +200,7 @@ const Button = styled.button`
 const Top = styled.div`
   width: 100%;
   height: 10%;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
   display: flex;
   align-items: center;
   flex-direction: row;
