@@ -132,15 +132,21 @@ const CenterContainer = styled.div`
   align-items: center;
   justify-content: center;
   /* background-color: red; */
+
 `;
 const Box = styled.div`
   width: 70vw;
   height: 80%;
   border: 1px solid white;
   border-radius: 15px;
+  @media (max-width: 768px) {
+
+width: 80vw;
+
+}
 `;
 const ForSearchBox = styled.div`
-  width: 80%;
+  width: 90%;
   height: 55px;
   display: flex;
   align-items: center;
@@ -151,6 +157,11 @@ const ForSearchBox = styled.div`
   padding-left: 10px;
   outline: none;
   font-size: 16px;
+  @media (max-width: 768px) {
+
+  height: 40px;
+
+  }
 `;
 const Input = styled.input`
   width: 90%;
@@ -160,10 +171,16 @@ const Input = styled.input`
   justify-content: center;
   border-radius: 9px;
   border: none;
-
   outline: none;
   font-size: 16px;
   background-color: transparent;
+  @media (max-width: 768px) {
+    border-radius: 5px;
+    width: 84%;
+
+  height: 40px;
+
+  }
 `;
 const SearchButton = styled.button`
   width: 8%;
@@ -183,6 +200,11 @@ const SearchButton = styled.button`
     #72a5f2,
     #86b1f1
   );
+  @media (max-width: 768px) {
+    width:13%;
+  height: 27px;
+
+  }
   /* margin-bottom: 50px; */
 `;
 const Button = styled.button`
@@ -221,6 +243,10 @@ const Bottom = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  @media (max-width: 768px) {
+    justify-content: flex-start;
+
+  }
 `;
 
 const ForDots = styled.div`
@@ -237,4 +263,9 @@ const H1 = styled.h1`
   font-weight: 700;
   padding: 10px 110px;
   color: white;
+  @media (max-width: 768px) {
+  font-size: 30px;
+
+   padding:20px 40px ;
+  }
 `;

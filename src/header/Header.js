@@ -15,6 +15,10 @@ const ForHeader = styled.div`
   display: flex;
   align-items: center;
   padding-left:10px;
+  @media (max-width: 768px) {
+ justify-content:center ;
+
+  }
   /* background-color: red; */
 `;
 const H2 = styled.h2`
