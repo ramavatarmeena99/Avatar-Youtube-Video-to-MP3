@@ -28,6 +28,10 @@ const ForFooter = styled.div`
         align-items: center;
         justify-content: center;
         background-image: linear-gradient(to right top, #111419, #181f22, #222929, #2f3430, #3d3e39);
+        @media (max-width: 768px) {
+            height: 10vh;
+
+  }
 `;
 
 const H1 = styled.h1`
