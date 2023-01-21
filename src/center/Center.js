@@ -1,13 +1,15 @@
 import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
-import loading from "../assests/loading.gif";
+// import loading from "../assests/loading.gif";
 import { BiSearch } from "react-icons/bi";
 
 export default function Center() {
   const [videoUrl, setVideoUrl] = useState("");
   const [downloadLink, setDownloadLink] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isDownload, setIsDownload] = useState(false);
+
   const [disable, setDisable] = useState(false);
 
   // var youtubeURL = videoUrl;
@@ -26,8 +28,8 @@ export default function Center() {
       return;
     }
     setDisable(true);
-
     setIsLoading(true);
+    setIsDownload(false)
 
     await axios({
       method: "GET",
@@ -51,6 +53,7 @@ export default function Center() {
         setDisable(false);
 
         setIsLoading(false);
+        setIsDownload(true)
 
         console.log(res.data?.YoutubeAPI?.urlMp3); // for array found //
 
@@ -58,7 +61,7 @@ export default function Center() {
       })
       .catch((err) => {
         setIsLoading(false);
-
+setIsDownload(false)
         console.log("err: ", err);
       });
   };
@@ -105,13 +108,34 @@ export default function Center() {
             </SearchButton>
           </ForSearchBox>
           {isLoading && (
-            <img
-              style={{ width: "100px", height: "100px" }}
-              src={loading}
-              alt="loading"
-            />
+             <div
+             style={{
+               width: "100%",
+               height: "30px",
+               display: "flex",
+               alignItems: "center",
+               justifyContent: "center",
+               paddingTop: "20px",
+               fontSize: "20px",
+               fontWeight: "700",
+               lineHeight: "17px",
+               color: "green",
+             }}
+           >
+            <LoadingIcon
+
+            
+            >
+
+            </LoadingIcon>
+           </div>
+            // <img
+            //   style={{ width: "100px", height: "100px" }}
+            //   src={loading}
+            //   alt="loading"
+            // />
           )}
-          {downloadLink && (
+          {isDownload && (
             <Button onClick={() => window.open(downloadLink)}>
               Download to mp3
             </Button>
@@ -228,6 +252,30 @@ const Button = styled.button`
   );
   /* margin-bottom: 50px; */
 `;
+const LoadingIcon = styled.div`
+ border: 5px solid #f3f3f3;
+border-radius: 50%;
+border-top: 6px solid green;
+width: 35px;
+height: 35px;
+margin-top:10px;
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+/* justify-content: center; */
+-webkit-animation: spin 2s linear infinite;
+animation: spin 2s linear infinite;
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+`;
+
 const Top = styled.div`
   width: 100%;
   height: 10%;
@@ -269,3 +317,6 @@ const H1 = styled.h1`
    padding:20px 40px ;
   }
 `;
+
+
+
