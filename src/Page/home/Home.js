@@ -1,10 +1,11 @@
+// import { Header } from 'antd/es/layout/layout';
 import React from 'react'
 import styled from 'styled-components';
-import Center from '../../center/Center'
-import Footer from '../../footer/Footer';
-import Grid from '../../grid/Grid';
-import Header from '../../header/Header'
-import Instruction from '../../instruction/Instruction';
+import Center from '../../components/center/Center'
+import Footer from '../../components/footer/Footer';
+import Grid from '../../components/grid/Grid';
+import Header from '../../components/header/Header'
+import Instruction from '../../components/instruction/Instruction';
 
 export default function Home() {
   return (

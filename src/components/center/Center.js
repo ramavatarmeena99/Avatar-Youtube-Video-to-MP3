@@ -9,6 +9,7 @@ export default function Center() {
   const [downloadLink, setDownloadLink] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isDownload, setIsDownload] = useState(false);
+  const [showAlertMessege, setShowAlertMessege] = useState(null);
 
   const [disable, setDisable] = useState(false);
 
@@ -20,16 +21,21 @@ export default function Center() {
 
   const searchVideos = async () => {
     if (videoUrl === "") {
-      alert("none");
-      return;
+      setShowAlertMessege(true);
+      setTimeout(() => {
+        setShowAlertMessege(false);
+      }, 2000);
+      return () => {
+        clearTimeout(showAlertMessege);
+      };
     }
     if (!videoUrl.startsWith("http")) {
-      alert("your url wrong");
+      setShowAlertMessege(true);
       return;
     }
     setDisable(true);
     setIsLoading(true);
-    setIsDownload(false)
+    setIsDownload(false);
 
     await axios({
       method: "GET",
@@ -53,7 +59,7 @@ export default function Center() {
         setDisable(false);
 
         setIsLoading(false);
-        setIsDownload(true)
+        setIsDownload(true);
 
         console.log(res.data?.YoutubeAPI?.urlMp3); // for array found //
 
@@ -61,7 +67,7 @@ export default function Center() {
       })
       .catch((err) => {
         setIsLoading(false);
-setIsDownload(false)
+        setIsDownload(false);
         console.log("err: ", err);
       });
   };
@@ -93,6 +99,7 @@ setIsDownload(false)
               type="text"
               placeholder="Enter valid youtube Video url"
             />
+
             <SearchButton disabled={disable} onClick={searchVideos}>
               {disable ? (
                 "Wait"
@@ -107,28 +114,15 @@ setIsDownload(false)
               )}
             </SearchButton>
           </ForSearchBox>
+          {showAlertMessege ? (
+            <AlertMessege>
+              <H3>*Please Enter Valid URL*</H3>
+            </AlertMessege>
+          ) : null}
           {isLoading && (
-             <div
-             style={{
-               width: "100%",
-               height: "30px",
-               display: "flex",
-               alignItems: "center",
-               justifyContent: "center",
-               paddingTop: "20px",
-               fontSize: "20px",
-               fontWeight: "700",
-               lineHeight: "17px",
-               color: "green",
-             }}
-           >
-            <LoadingIcon
-
-            
-            >
-
-            </LoadingIcon>
-           </div>
+            <ForLoading>
+              <LoadingIcon/>
+            </ForLoading>
             // <img
             //   style={{ width: "100px", height: "100px" }}
             //   src={loading}
@@ -156,7 +150,18 @@ const CenterContainer = styled.div`
   align-items: center;
   justify-content: center;
   /* background-color: red; */
-
+`;
+const ForLoading = styled.div`
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 17px;
+  color: green;
 `;
 const Box = styled.div`
   width: 70vw;
@@ -164,11 +169,9 @@ const Box = styled.div`
   border: 1px solid white;
   border-radius: 15px;
   @media (max-width: 768px) {
-
-width: 85vw;
-height:75% ;
-
-}
+    width: 85vw;
+    height: 75%;
+  }
 `;
 const ForSearchBox = styled.div`
   width: 90%;
@@ -183,9 +186,7 @@ const ForSearchBox = styled.div`
   outline: none;
   font-size: 16px;
   @media (max-width: 768px) {
-
-  height: 40px;
-
+    height: 40px;
   }
 `;
 const Input = styled.input`
@@ -203,8 +204,7 @@ const Input = styled.input`
     border-radius: 5px;
     width: 84%;
 
-  height: 40px;
-
+    height: 40px;
   }
 `;
 const SearchButton = styled.button`
@@ -226,9 +226,8 @@ const SearchButton = styled.button`
     #86b1f1
   );
   @media (max-width: 768px) {
-    width:13%;
-  height: 27px;
-
+    width: 13%;
+    height: 27px;
   }
   /* margin-bottom: 50px; */
 `;
@@ -254,26 +253,34 @@ const Button = styled.button`
   /* margin-bottom: 50px; */
 `;
 const LoadingIcon = styled.div`
- border: 5px solid #f3f3f3;
-border-radius: 50%;
-border-top: 6px solid green;
-width: 35px;
-height: 35px;
-margin-top:10px;
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-/* justify-content: center; */
--webkit-animation: spin 2s linear infinite;
-animation: spin 2s linear infinite;
-@-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 6px solid green;
+  width: 35px;
+  height: 35px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  /* justify-content: center; */
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  @-webkit-keyframes spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
   }
-  
+
   @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 `;
 
@@ -294,7 +301,6 @@ const Bottom = styled.div`
   flex-direction: column;
   @media (max-width: 768px) {
     justify-content: flex-start;
-
   }
 `;
 
@@ -313,11 +319,32 @@ const H1 = styled.h1`
   padding: 10px 110px;
   color: white;
   @media (max-width: 768px) {
-  font-size: 30px;
+    font-size: 30px;
 
-   padding:20px 40px ;
+    padding: 20px 40px;
   }
 `;
 
+const AlertMessege = styled.div`
+  width: auto;
+  height: auto;
+  border-radius: 40px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  margin-top: 5px;
+  @media (max-width: 768px) {
+  }
+`;
 
+const H3 = styled.h3`
+  color: red;
+  font-weight: 500;
+  font-size: 15px;
+  @media (max-width: 768px) {
+  font-size: 12px;
 
+  }
+`;
