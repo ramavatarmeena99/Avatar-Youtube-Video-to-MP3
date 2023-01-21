@@ -165,7 +165,8 @@ const Box = styled.div`
   border-radius: 15px;
   @media (max-width: 768px) {
 
-width: 80vw;
+width: 85vw;
+height:75% ;
 
 }
 `;
