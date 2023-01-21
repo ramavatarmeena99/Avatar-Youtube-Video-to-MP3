@@ -26,7 +26,7 @@ export default function Grid() {
 
 const ForGrid = styled.div`
   width: 100%;
-  height: 90vh;
+  height: auto;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -36,7 +36,7 @@ const ForGrid = styled.div`
   border-top: 1px solid #e6e6e6;
   @media (max-width: 768px) {
     height: auto;
-    padding: 0px 0px;
+    padding: 20px 0px;
   }
 `;
 const ForGridData = styled.div`

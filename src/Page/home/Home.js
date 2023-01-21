@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import Center from '../../center/Center'
+import Footer from '../../footer/Footer';
 import Grid from '../../grid/Grid';
 import Header from '../../header/Header'
 import Instruction from '../../instruction/Instruction';
@@ -14,6 +15,7 @@ export default function Home() {
     </UiDesign>
     <Instruction/>
     <Grid/>
+    <Footer/>
    </>
     
 

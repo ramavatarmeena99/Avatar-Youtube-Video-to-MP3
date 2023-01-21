@@ -4,7 +4,7 @@ export const instructionData = [
     title: "Start",
     description: (
       <>
-        Paste Youtube video URL into the search box, then click "START" button
+        Paste Youtube video URL into the search box, then click "SEARCH" button
       </>
     ),
     color: "#d2e3fc",
@@ -16,8 +16,8 @@ export const instructionData = [
     title: "Convert",
     description: (
       <>
-        Select the MP3 quality for the conversion (Default option should be
-        used), then click "CONVERT" button
+      Wait until the conversion is completed, and then click on "DOWNLOAD TO MP3 " button.
+      
       </>
     ),
     color: "#fef1d7",
@@ -31,8 +31,7 @@ export const instructionData = [
     title: "Download",
     description: (
       <>
-        Wait until the conversion is completed, and then click on "DOWNLOAD"
-        button.
+        Wait until the conversion is completed, and your video will be automatically downloaded
       </>
     ),
     color: "#ceead6",
