@@ -53,7 +53,7 @@ const ForGridData = styled.div`
   padding-bottom: 23px;
   padding-top: 20px;
   @media (max-width: 768px) {
-    width: 260px;
+    width: 90%;
     margin: 0px;
     margin-top: 20px;
   }
