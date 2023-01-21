@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
-// import loading from "../assests/loading.gif";
 import { BiSearch } from "react-icons/bi";
 
 export default function Center() {
@@ -13,8 +12,6 @@ export default function Center() {
 
   const [disable, setDisable] = useState(false);
 
-  // var youtubeURL = videoUrl;
-  // var videoKey = youtubeURL.substr(youtubeURL.lastIndexOf("v=") + 2, 11);
   const url = (e) => {
     setVideoUrl(e.target.value);
   };
@@ -31,7 +28,13 @@ export default function Center() {
     }
     if (!videoUrl.startsWith("http")) {
       setShowAlertMessege(true);
-      return;
+      setTimeout(() => {
+        setShowAlertMessege(false);
+      }, 2000);
+      return () => {
+        clearTimeout(showAlertMessege);
+      };
+      
     }
     setDisable(true);
     setIsLoading(true);
@@ -72,16 +75,6 @@ export default function Center() {
       });
   };
 
-  // const getUrl = () => {
-
-  //   // console.log(videoKey)
-  // };
-
-  //   useEffect(() => {
-  // // getApi()
-  // searchVideos()
-  //   }, []);
-
   return (
     <CenterContainer>
       <Box>
@@ -121,7 +114,7 @@ export default function Center() {
           ) : null}
           {isLoading && (
             <ForLoading>
-              <LoadingIcon/>
+              <LoadingIcon />
             </ForLoading>
             // <img
             //   style={{ width: "100px", height: "100px" }}
@@ -250,6 +243,11 @@ const Button = styled.button`
     #72a5f2,
     #86b1f1
   );
+  @media (max-width: 768px) {
+    width: auto;
+    padding:5px 12px ;
+
+  }
   /* margin-bottom: 50px; */
 `;
 const LoadingIcon = styled.div`
@@ -344,7 +342,6 @@ const H3 = styled.h3`
   font-weight: 500;
   font-size: 15px;
   @media (max-width: 768px) {
-  font-size: 12px;
-
+    font-size: 12px;
   }
 `;
