@@ -4,7 +4,7 @@ export const instructionData = [
     title: "Start",
     description: (
       <>
-        Paste Youtube video URL into the search box, then click "SEARCH" button
+        Paste Youtube video URL into the search box, then click "SEARCH ICON" button
       </>
     ),
     color: "#d2e3fc",

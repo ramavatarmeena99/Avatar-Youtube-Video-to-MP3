@@ -19,7 +19,7 @@ export default function Center() {
   const searchVideos = async () => {
     if (videoUrl === "") {
       setShowAlertMessege(true);
-      setTimeout(() => {
+      setTimeout(() => {  
         setShowAlertMessege(false);
       }, 2000);
       return () => {
