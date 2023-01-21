@@ -34,7 +34,6 @@ export default function Center() {
       return () => {
         clearTimeout(showAlertMessege);
       };
-      
     }
     setDisable(true);
     setIsLoading(true);
@@ -53,7 +52,8 @@ export default function Center() {
 
       headers: {
         Accept: "application/json",
-        "X-RapidAPI-Key": "b3a78c0f08mshc9fad7e39ad0a01p18182ejsn65e17fd3055f",
+        "X-RapidAPI-Key": "38c0325a9emsh03409551e1b3842p1b3574jsnbccf936b12d8",
+        // "X-RapidAPI-Key": "b3a78c0f08mshc9fad7e39ad0a01p18182ejsn65e17fd3055f",
 
         "X-RapidAPI-Host": "t-one-youtube-converter.p.rapidapi.com",
       },
@@ -245,8 +245,7 @@ const Button = styled.button`
   );
   @media (max-width: 768px) {
     width: auto;
-    padding:5px 12px ;
-
+    padding: 5px 12px;
   }
   /* margin-bottom: 50px; */
 `;
