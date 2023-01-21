@@ -1,50 +1,15 @@
 import React from "react";
+import styled from "styled-components";
 import { instructionData } from "./InstructionData";
 
 export default function Instruction() {
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "50vh",
-        // backgroundColor: "aqua",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexWrap: "wrap",
-        // padding: "0px 200px",
-
-        paddingTop: "20px",
-        borderTop: "1px solid #e6e6e6",
-      }}
-    >
+    <ForInstruction>
       {instructionData.map((item, index) => {
         return (
-          <div
-            style={{
-              width: "250px",
-              height: "250px",
-              // backgroundColor: "red",
-
-              borderRadius: "10px",
-              margin: "10px 30px",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              // padding: "0px 10px ",
-              paddingTop: "20px",
-            }}
-          >
-            <div
+          <ForInstructionData key={index}>
+            <ForInstructionDiv
               style={{
-                width: "70px",
-                height: "70px",
-                borderRadius: "50%",
-                // backgroundColor: "blue",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
                 backgroundColor: `${item.color}`,
               }}
             >
@@ -52,14 +17,14 @@ export default function Instruction() {
                 style={{
                   fontSize: "35px",
                   fontWeight: "900",
-                // backgroundColor: `${item.textColor}`,
+                  // backgroundColor: `${item.textColor}`,
 
                   color: `${item.textColor}`,
                 }}
               >
                 {item.id}
               </p>
-            </div>
+            </ForInstructionDiv>
 
             <p
               style={{
@@ -80,9 +45,62 @@ export default function Instruction() {
             >
               {item.description}
             </p>
-          </div>
+          </ForInstructionData>
         );
       })}
-    </div>
+    </ForInstruction>
   );
 }
+
+const ForInstruction = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0px 0px;
+  padding-top: 0px;
+  border-top: 1px solid #e6e6e6;
+
+  /* @media (max-width: 768px) {
+  font-size: 30px;
+
+   padding:20px 40px ;
+  } */
+`;
+const ForInstructionData = styled.div`
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+  border-radius: 10px;
+  margin: 10px 30px;
+
+  @media (max-width: 768px) {
+    width: 250px;
+    height: 230px;
+    padding-top: 0px;
+    margin: 0px 0px;
+  }
+`;
+
+const ForInstructionDiv = styled.div`
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    margin: 0px;
+  }
+`;
