@@ -1,15 +1,22 @@
 import React from 'react'
 import styled from 'styled-components';
 import Center from '../../center/Center'
+import Grid from '../../grid/Grid';
 import Header from '../../header/Header'
+import Instruction from '../../instruction/Instruction';
 
 export default function Home() {
   return (
-    <UiDesign>
+   <>
+   <UiDesign>
       <Header/>
       <Center/>
-
     </UiDesign>
+    <Instruction/>
+    <Grid/>
+   </>
+    
+
   )
 }
 const UiDesign = styled.div`
